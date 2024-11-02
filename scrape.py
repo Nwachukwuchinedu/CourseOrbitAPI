@@ -1,6 +1,10 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.action_chains import ActionChains
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+
+
+
 from flask import Flask, jsonify, request
 from bs4 import BeautifulSoup
 import cloudscraper
@@ -15,7 +19,12 @@ def scrape_data():
         url = "https://courson.xyz/coupons"
 
         # Initialize Selenium WebDriver (you can use Chrome or Firefox)
-        driver = webdriver.Chrome()  # Ensure the driver is installed and set in PATH
+        options = Options()
+        options.add_argument("--headless")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
+
+        driver = webdriver.Chrome(options=options)
 
         # Open the URL in Selenium
         driver.get(url)
@@ -82,7 +91,13 @@ def scrape_data():
 def scrape_course():
 
   # Initialize the WebDriver (adjust path if necessary)
-    driver = webdriver.Chrome()
+    options = Options()
+    options.add_argument("--headless")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+
+    driver = webdriver.Chrome(options=options)
+
 
     course_url = request.args.get('url')  # Get the URL from the query parameter
     # Go to the webpage you want to scrape
