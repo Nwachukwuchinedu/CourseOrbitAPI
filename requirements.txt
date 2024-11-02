@@ -1,5 +1,5 @@
-Flask>=2.0.0
-selenium>=4.0.0
-beautifulsoup4>=4.9.0
-cloudscraper>=1.2.58
-gunicorn==23.0.0
+Flask>=3.3.0
+selenium>=4.26.1
+beautifulsoup4>=4.12.3
+cloudscraper>=1.2.71
+gunicorn>=23.0.0
