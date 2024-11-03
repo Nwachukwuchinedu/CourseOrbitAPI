@@ -12,8 +12,14 @@ app.get('/scrape', async (req, res) => {
   }
 
   try {
-    // Launch Puppeteer browser
-    const browser = await puppeteer.launch({ headless: 'new' });
+   // Log the executable path Puppeteer is using for Chrome
+   console.log('Puppeteer executable path:', require('puppeteer').executablePath());
+
+   // Launch Puppeteer browser
+   const browser = await puppeteer.launch({
+     headless: true,
+     executablePath: '/opt/render/.cache/puppeteer/chrome', // Adjust path if needed
+   });
     const page = await browser.newPage();
 
     // Go to the URL
