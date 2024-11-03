@@ -1,8 +1,9 @@
 const express = require('express');
 const puppeteer = require('puppeteer');
+require("dotenv").config();
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.get('/scrape', async (req, res) => {
   const url = req.query.url;
@@ -13,7 +14,19 @@ app.get('/scrape', async (req, res) => {
 
   try {
     // Launch Puppeteer browser
-    const browser = await puppeteer.launch({ headless: 'new' });
+    const browser = await puppeteer.launch({
+      args: [
+        "--disable-setuid-sandbox",
+        "--no-sandbox",
+        "--single-process",
+        "--no-zygote",
+      ],
+      executablePath:
+        process.env.NODE_ENV === "production"
+          ? process.env.PUPPETEER_EXECUTABLE_PATH
+          : puppeteer.executablePath(),
+    });
+    
     const page = await browser.newPage();
 
     // Go to the URL
