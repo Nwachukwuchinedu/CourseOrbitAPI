@@ -1,4 +1,6 @@
 const TelegramBot = require('node-telegram-bot-api');
+const axios = require('axios');
+
 
 // Replace with your bot token and group chat ID
 const BOT_TOKEN = '7272799590:AAHILFOJO9mGLm5iQDzUnNEclFMkaEyFnkI';
@@ -45,3 +47,33 @@ bot.sendPhoto(GROUP_CHAT_ID, imageUrl, { caption: messageContent, ...options })
   .catch(err => {
     console.error("Error sending message:", err);
   });
+
+
+
+let loggedIds = new Set(); // To store already seen IDs
+
+// Function to fetch data from the API and log new entries
+async function fetchNewData() {
+    try {
+        const response = await axios.get('http://127.0.0.1:5000/scrape'); // Replace with your API URL
+        const data = response.data; // Assuming data is an array of objects with an `id` property
+
+        const newEntries = data.filter(item => !loggedIds.has(item.id));
+        
+        if (newEntries.length > 0) {
+            // Log the newest data at the top
+            console.log("New Entries:");
+            newEntries.reverse().forEach(entry => {
+                console.log(entry); // Adjust as necessary to display relevant information
+                loggedIds.add(entry.id); // Add ID to set to mark it as logged
+            });
+        } else {
+            console.log("No new data");
+        }
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
+
+// Run fetchNewData every 40 seconds
+setInterval(fetchNewData, 40000);
