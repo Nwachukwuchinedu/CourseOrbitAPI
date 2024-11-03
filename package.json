@@ -17,6 +17,7 @@
     "puppeteer": "^23.6.1"
   },
   "devDependencies": {
+    "@sparticuz/chromium": "^130.0.0",
     "node-dev": "^8.0.0"
   }
 }

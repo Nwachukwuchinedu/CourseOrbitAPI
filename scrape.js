@@ -1,6 +1,7 @@
 const express = require('express');
 const puppeteer = require('puppeteer');
 require("dotenv").config();
+const chromium = require("@sparticuz/chromium");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -21,12 +22,10 @@ app.get('/scrape', async (req, res) => {
         "--single-process",
         "--no-zygote",
       ],
-      executablePath:
-        process.env.NODE_ENV === "production"
-          ? process.env.PUPPETEER_EXECUTABLE_PATH
-          : puppeteer.executablePath(),
+      executablePath: await chromium.executablePath(),
+      headless: chromium.headless,
     });
-    
+
     const page = await browser.newPage();
 
     // Go to the URL
