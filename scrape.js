@@ -13,7 +13,7 @@ const app = express();
 app.use(bodyParser.json());
 
 // Use stealth plugin
-puppeteer.use(StealthPlugin());
+puppeteer1.use(StealthPlugin());
 
 
 const PORT = process.env.PORT || 3000;
