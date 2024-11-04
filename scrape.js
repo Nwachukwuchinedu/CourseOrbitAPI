@@ -14,18 +14,15 @@ const scapeByIdRoute = require("./routes/scapeByIdRoute");
 const scrapeCourseRoute = require("./routes/scrapeCourseRoute");
 const scrapeeRoute = require("./routes/scrapeeRoute");
 const scrapeeByIdRoute = require("./routes/scrapeeByIdRoute");
-;
 const app = express();
-app.use(bodyParser.json());
+const PORT = process.env.PORT || 3000;
+
 
 // Use stealth plugin
 puppeteer1.use(StealthPlugin());
 
-const PORT = process.env.PORT || 3000;
-
-app.use(cors());
-
-// Middleware to parse JSON
+app.use(bodyParser.json());
+app.use(cors({ origin: 'http://localhost:5173' }));
 app.use(express.json());
 
 // Use the routes
