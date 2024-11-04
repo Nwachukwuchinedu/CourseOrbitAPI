@@ -315,7 +315,7 @@ app.get('/scrape_course', async (req, res) => {
 
     try {
         // Launch Puppeteer with stealth plugin
-          const browser = await puppeteer.launch({
+          const browser = await puppeteer1.launch({
       args: [
         "--disable-setuid-sandbox",
         "--no-sandbox",
@@ -325,7 +325,7 @@ app.get('/scrape_course', async (req, res) => {
       executablePath: await chromium.executablePath(),
       headless: chromium.headless,
     });
-        // const browser = await puppeteer.launch({ headless: true });
+        // const browser = await puppeteer1.launch({ headless: true });
         const page = await browser.newPage();
 
         // Navigate to the course URL
