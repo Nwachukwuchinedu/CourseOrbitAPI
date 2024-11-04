@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "scrape.js",
   "scripts": {
-    "dev": "node scrape.js",
+    "dev": "nodemon scrape.js",
     "start": "node scrape.js"
   },
   "keywords": [],
@@ -12,12 +12,19 @@
   "description": "",
   "dependencies": {
     "axios": "^1.7.7",
+    "body-parser": "^1.20.3",
+    "cloudscraper": "^4.6.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
-    "puppeteer": "^23.6.1"
+    "jsdom": "^25.0.1",
+    "puppeteer": "^23.6.1",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2"
   },
   "devDependencies": {
     "@sparticuz/chromium": "^130.0.0",
-    "node-dev": "^8.0.0"
+    "node-dev": "^8.0.0",
+    "nodemon": "^3.1.7"
   }
 }
