@@ -2,7 +2,9 @@ const express = require('express');
 require("dotenv").config();
 const cors = require('cors');
 const chromium = require("@sparticuz/chromium");
-const puppeteer = require('puppeteer-extra');
+const puppeteer = require('puppeteer');
+const puppeteer1 = require('puppeteer-extra');
+
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 const { JSDOM } = require('jsdom');
 const bodyParser = require('body-parser');
@@ -176,7 +178,7 @@ app.get('/scrape_all/:id', async (req, res) => {
   }
 
   try {
-      const browser = await puppeteer.launch({
+      const browser = await puppeteer1.launch({
       args: [
         "--disable-setuid-sandbox",
         "--no-sandbox",
@@ -186,7 +188,7 @@ app.get('/scrape_all/:id', async (req, res) => {
       executablePath: await chromium.executablePath(),
       headless: chromium.headless,
     });
-    // const browser = await puppeteer.launch({ headless: true }); // or 'new' if you have the latest Puppeteer
+    // const browser = await puppeteer1.launch({ headless: true }); // or 'new' if you have the latest Puppeteer1
     const page = await browser.newPage();
 
     // Go to the URL
@@ -234,8 +236,8 @@ app.get('/scrapee', async (req, res) => {
     try {
         const url = "https://courson.xyz/coupons";
 
-        // Launch Puppeteer
-          const browser = await puppeteer.launch({
+        // Launch Puppeteer1
+          const browser = await puppeteer1.launch({
             args: [
               "--disable-setuid-sandbox",
               "--no-sandbox",
@@ -245,7 +247,7 @@ app.get('/scrapee', async (req, res) => {
       executablePath: await chromium.executablePath(),
       headless: chromium.headless,
     });
-        // const browser = await puppeteer.launch({ headless: true }); // Set headless to false for debugging
+        // const browser = await puppeteer1.launch({ headless: true }); // Set headless to false for debugging
         const page = await browser.newPage();
 
         // Navigate to the URL
