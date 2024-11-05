@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "scrape.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    { "src": "/scrape", "dest": "/scrape.js" },
+    { "src": "/scrape_all", "dest": "/scrape.js" },
+    { "src": "/scrapee", "dest": "/scrape.js" },
+    { "src": "/scrape_course", "dest": "/scrape.js" }
+  ],
+  "env": {
+    "PORT": "3000"
+  }
+}

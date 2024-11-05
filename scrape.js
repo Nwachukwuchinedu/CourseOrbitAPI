@@ -33,6 +33,12 @@ app.use("/scrapee", scrapeeRoute);
 app.use("/scrapee", scrapeeByIdRoute);
 app.use("/scrape_course", scrapeCourseRoute);
 
+
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
+
+
 // app.get("/scrape", async (req, res) => {
 //   const url = req.query.url;
 
@@ -668,6 +674,6 @@ app.use("/scrape_course", scrapeCourseRoute);
 // });
 
 // Start the server
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+
+
+

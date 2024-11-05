@@ -2,22 +2,23 @@ const puppeteer1 = require("puppeteer-extra");
 const chromium = require("@sparticuz/chromium");
 const { JSDOM } = require("jsdom");
 
+
 exports.scrape = async (req, res) => {
   try {
     const url = "https://courson.xyz/coupons";
 
     // Launch Puppeteer1
-    const browser = await puppeteer1.launch({
-      args: [
-        "--disable-setuid-sandbox",
-        "--no-sandbox",
-        "--single-process",
-        "--no-zygote",
-      ],
-      executablePath: await chromium.executablePath(),
-      headless: chromium.headless,
-    });
-    // const browser = await puppeteer1.launch({ headless: true }); // Set headless to false for debugging
+    //       const browser = await puppeteer1.launch({
+    //         args: [
+    //           "--disable-setuid-sandbox",
+    //           "--no-sandbox",
+    //           "--single-process",
+    //           "--no-zygote",
+    //   ],
+    //   executablePath: await chromium.executablePath(),
+    //   headless: chromium.headless,
+    // });
+    const browser = await puppeteer1.launch({ headless: true }); // Set headless to false for debugging
     const page = await browser.newPage();
 
     // Navigate to the URL
@@ -95,4 +96,4 @@ exports.scrape = async (req, res) => {
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
-};
+}
